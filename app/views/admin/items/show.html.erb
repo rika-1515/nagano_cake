@@ -29,20 +29,19 @@
             (税抜価格)
           </td>
           <td>
-            <%=@item.price %>
+            <%=@item.add_tax_price.to_s(:delimited) %>
+            (<%=@item.price.to_s(:delimited) %>)円
           </td>
         </tr>
           
         <tr>
           <td>販売ステータス</td>
           <td>
-            <% if is_active = "true" %>
+            <% if @item.is_active? %>
             販売中
             <% else %>
             販売停止中
             <% end %>
-            
-            <%=@item.is_active %>
           </td>
         </tr>
       
