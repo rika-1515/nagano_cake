@@ -1,0 +1,83 @@
+<h2>注文履歴詳細</h2>
+
+<table>
+    <% @order.each do |f| %>
+      <tr>
+        <td>購入者</td>
+        <td>
+            <%=f.last_name %> <%=order.first_name %>
+        </td>
+    　</tr>
+    
+    　<tr>
+    　  <td>注文日</td>  
+        <td>
+            <%=f.created_at %>
+        </td>
+      </tr>
+      
+      <tr>
+          <td>配送先</td>
+          <td>
+            <%=f.postal_code %><%=f.address %>
+            <%=f.name %>
+          </td>
+      </tr>
+      
+      <tr>
+          <td>支払方法</td>
+          <td>
+            <%=f.pay_method %>
+          </td>
+      </tr>
+      
+        <tr>
+          <td>注文ステータス</td>
+          <td>
+            <%= f.select :status, Order.statuses_i18n.invert %>
+            <%=f.submit '更新' %>
+          </td>
+        </tr>
+      
+    <% end %>
+  </table>
+  
+  
+  <table>
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>製作ステータス</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+        <tr>
+          <% @order_datails.each do |d| %>
+          <td>
+            <%=d.name %>
+          </td>
+          
+          <td>
+            <%=d.add_tax_price.to_s(:delimited) %>
+          </td>
+
+          <td>
+            <%=d.item_amount.to_s(:delimited) %>
+          </td>
+          <td>
+            <%=d.item_subtotal.to_s(:delimited) %>
+          </td>
+          <td>
+            <%= d.select :making_status, OrderDetails.making_statuses_i18n.invert %>
+            <%=d.submit '更新' %>
+
+          </td>
+        </tr>
+          <% end %>
+    </tbody>
+  </table>
