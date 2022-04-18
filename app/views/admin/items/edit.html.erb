@@ -1,4 +1,8 @@
-<h2>商品編集</h2>
+<div class="container">  
+  <div class="row">
+
+
+<<h5 class="font-weight-bold bg-light text-dark">商品編集</h5>
 <%= form_with model: @item,url:admin_item_path do |f| %>
 
 <label for="inputImage">商品画像</label>
@@ -35,6 +39,9 @@
     </div>
 
 <div>
-    <%=f.submit '変更を保存' %>
+    <%=f.submit '変更を保存',class:"btn btn-success" %>
     <% end %>
+</div>
+
+    </div>
 </div>

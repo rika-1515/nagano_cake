@@ -1,13 +1,21 @@
-<h2>ジャンル一覧・追加</h2>
+
+<div class="container">  
+  <div class="row">
+
+<h5 class="font-weight-bold bg-light text-dark">ジャンル一覧・追加</h5><br>
 <%= form_with model: @genre,url:admin_genres_path do |f| %>
-  <label>ジャンル名</label>
+  <div class="font-weight-bold bg-light text-dark">ジャンル名</div>
   <%=f.text_field:name,autofocus:true,placeholder:"ジャンル名" %>
 
-  <%= f.submit '新規登録' %>
+
+  <%= f.submit '新規登録',class:"btn btn-success" do %>
+  <% end %>
+
+
 <% end %>
 
-<table>
-    <thead>
+<table class="table">
+    <thead class="table-light">
       <tr>
         <th>ジャンル</th>
         <th></th>
@@ -21,9 +29,13 @@
             <%=genre.name %>
           </td>
           <td>
-            <%=link_to "編集する", edit_admin_genre_path(genre.id) %>
+            <%=link_to "編集する", edit_admin_genre_path(genre.id),class:"btn btn-success" %>
+            
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  
+    </div> 
+</div>

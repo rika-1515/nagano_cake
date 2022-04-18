@@ -1,4 +1,8 @@
-<h2>商品詳細</h2>
+<div class="container">  
+  <div class="row">
+
+
+<h5 class="font-weight-bold bg-light text-dark">商品詳細</h5>
 <%= image_tag @item.get_item_image %>
 
 <table>
@@ -38,9 +42,9 @@
           <td>販売ステータス</td>
           <td>
             <% if @item.is_active? %>
-            販売中
+            <p class="text-success font-weight-bold">販売中</p>
             <% else %>
-            販売停止中
+            <p class="text-muted font-weight-bold">販売停止中</p>
             <% end %>
           </td>
         </tr>
@@ -48,7 +52,11 @@
     
   </table>
   
-  <%=link_to "編集する", edit_admin_item_path(@item.id) %>
+  <%=link_to "編集する", edit_admin_item_path(@item.id),class:"btn btn-success" %>
+  
+  
+    </div>
+  </div>
   
   
   
