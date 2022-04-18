@@ -35,7 +35,9 @@
           <td>注文ステータス</td>
           <td>
             <%= f.select :status, Order.statuses_i18n.invert %>
-            <%=f.submit '更新' %>
+            <button class="btn btn-success">
+            <%=f.submit '更新',class:"btn btn-success" %>
+            </button>
           </td>
         </tr>
       
@@ -43,8 +45,8 @@
   </table>
   
   
-  <table>
-    <thead>
+  <table class="table">
+    <thead class="table-light">
       <tr>
         <th>商品名</th>
         <th>単価(税込)</th>
@@ -74,8 +76,9 @@
           </td>
           <td>
             <%= d.select :making_status, OrderDetails.making_statuses_i18n.invert %>
-            <%=d.submit '更新' %>
-
+            <button class="btn btn-success">
+            <%=d.submit '更新',class:"btn btn-success" %>
+            </button>
           </td>
         </tr>
           <% end %>

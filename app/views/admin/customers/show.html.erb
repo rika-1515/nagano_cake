@@ -1,4 +1,7 @@
-<h2><%=@customer.last_name %><%=@customer.first_name %>さんの会員詳細</h2>
+<div class="container">  
+  <div class="row">
+
+<<h5 class="font-weight-bold bg-light text-dark"><%=@customer.last_name %><%=@customer.first_name %>さんの会員詳細</h5>
 
 <table>
     
@@ -55,9 +58,9 @@
           <td>退会ステータス</td>
           <td>
             <% if @customer.is_active? %>
-            有効
+            <p class="text-success font-weight-bold">有効</p>
             <% else %>
-            退会
+            <p class="text-muted font-weight-bold">退会</p>
             <% end %>
           </td>
         </tr>
@@ -65,10 +68,12 @@
     
   </table>
   
-  <%=link_to "編集する", edit_admin_customer_path(@customer.id) %>
+  <%=link_to "編集する", edit_admin_customer_path(@customer.id),class:"btn btn-success" %>
   
   
   
+  </div>
+</div>
   
   
 
