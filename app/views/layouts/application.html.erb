@@ -31,6 +31,9 @@
       <li>
         <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
+      <li>
+        <%= link_to "会員ログアウト", destroy_customer_session_path, method: :delete %>
+      </li>
       
       <div class="input-group">
         <%= form_with model: @item,url:admin_items_path do |f| %>
@@ -40,15 +43,17 @@
         </span>
       </div>
       
-
-      
-      
-      
-      
-      
-    <% else %>
+      <% else %>
       <li>
         <%= link_to "管理者ログイン", new_admin_session_path %>
+      </li>
+      
+      <li>
+        <%= link_to "会員ログイン", new_customer_session_path %>
+      </li>
+      
+      <li>
+        <%= link_to "新規会員登録", new_customer_registration_path %>
       </li>
     <% end %>
     
