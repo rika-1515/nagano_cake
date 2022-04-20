@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'orders/show'
-  end
+
   devise_for :customers, controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations' # signup view -> app/controllers/public/registrations_controller.rb
@@ -24,7 +22,7 @@ Rails.application.routes.draw do
   
   root to:'public/homes#top'
   get '/about'=>'public/homes#about'
-
+  resources :customers,only:[:show]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
