@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get '/customers'=>'public/customers#show'
   get '/customers/edit'=>'public/customers#edit'
   get '/customers/quit'=>'public/customers#quit'
+  patch '/customer/out'=>'public/customer#out',as: 'out_customer'
+  put '/customer/out'=>'public/customer#out'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
