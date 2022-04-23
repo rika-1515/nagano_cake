@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   def show
-    @customer=Customer.find(current_customer.id)
+    @customer=current_customer
   end
 
   def edit
@@ -14,11 +14,10 @@ class Public::CustomersController < ApplicationController
   end
 
   def quit
-    @customer=Customer.find_by(email: params[:email])
   end
   
   def out
-    @customer=Customer.find_by(email: params[:email]
+    @customer=current_customer
     @customer.update(is_active: false)
     reset_session
     redirect_to root_path

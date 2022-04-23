@@ -1,6 +1,6 @@
-  <h5 class="font-weight-bold bg-light text-dark">会員一覧</h5>
+  <h5 class="font-weight-bold bg-light text-dark">会員情報編集</h5>
 
-<%= form_with model: @customer,url:public_customers_path do |f| %>
+<%= form_with model: @customer,url:customers_path do |f| %>
 
   <div class="field">
     <%= f.label :名前 %>
@@ -44,4 +44,7 @@
     
   </div>
 <% end %>
+
+  
+  <%= link_to "退会する",customers_quit_path,class:"btn btn-danger" %>
   

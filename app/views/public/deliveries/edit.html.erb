@@ -1,0 +1,23 @@
+<h5 class="font-weight-bold bg-light text-dark">配送先編集</h5>
+<%= form_with model: @delivery,url: delivery_path,local:true do |f| %>
+  <div class="field">
+    <%= f.label :郵便番号 %>
+    <%= f.text_field :postal_code, placeholder:"0000000" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :住所 %>
+    <%= f.text_field :address,placeholder:"東京都渋谷区代々木神園町0-0" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :宛名 %>
+    <%= f.text_field :name, placeholder:"令和道子"  %>
+  </div>
+
+  <%= f.submit '変更内容を保存',class:"btn btn-success" %>
+  
+
+
+<% end %>
+
