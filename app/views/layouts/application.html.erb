@@ -31,17 +31,7 @@
       <li>
         <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
-      <li>
-        <%= link_to "会員ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
       
-      <div class="input-group">
-        <%= form_with model: @item,url:admin_items_path do |f| %>
-        <%= f.search_field:item,placeholder:"Search" %><i class="fas fa-search"></i>
-        <span class="input-group-btn input-group-append">
-        <% end %>
-        </span>
-      </div>
       
       <% else %>
       <li>
@@ -55,10 +45,25 @@
       <li>
         <%= link_to "新規会員登録", new_customer_registration_path %>
       </li>
+      
+      <li>
+        <%= link_to "会員ログアウト", destroy_customer_session_path, method: :delete %>
+      </li>
+
+      <li>
+        <%= link_to "マイページ", customers_path %>
+      </li>
+      
     <% end %>
-    
-    
     </nav>
+    
+      <div class="input-group">
+        <%= form_with model: @item,url:admin_items_path do |f| %>
+        <%= f.search_field:item,placeholder:"Search" %><i class="fas fa-search"></i>
+        <span class="input-group-btn input-group-append">
+        <% end %>
+        </span>
+      </div>
     
   </header>
   
