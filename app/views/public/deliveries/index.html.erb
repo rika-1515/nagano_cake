@@ -49,7 +49,7 @@
           </td>
           <td>
             <%=link_to "編集する", edit_delivery_path(delivery.id),class:"btn btn-success" %>
-            
+            <%=link_to "削除する", delivery_path(delivery.id),method: :delete, data: {confirm: "本当に削除しますか？"},class:"btn btn-danger" %>
           </td>
         </tr>
       <% end %>

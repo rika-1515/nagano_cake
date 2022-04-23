@@ -25,6 +25,9 @@ class Public::DeliveriesController < ApplicationController
   end
   
   def destroy
+    @delivery=Delivery.find(params[:id])
+    @delivery.destroy
+    redirect_to '/deliveries'
   end
   
 private
