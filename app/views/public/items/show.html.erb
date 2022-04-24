@@ -1,0 +1,12 @@
+<%= image_tag @item.get_item_image %>
+
+<div>
+    <%=@item.name %>
+</div>
+<div>
+    <%=@item.introduction %>
+</div>
+<div>
+    <%=@item.add_tax_price.to_s(:delimited) %>
+    <p>(税込)</p>
+</div>

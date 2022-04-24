@@ -33,13 +33,14 @@
 <td>
 <%= image_tag item.get_item_image %><br>
 <%=item.name %><br>
-<%=item.price %>
+<%=item.add_tax_price %>
 </td>
 <% end %>
 </tr>
 </table>
 
-link_to "全ての商品を見る>", 
+
+<%=link_to "全ての商品を見る>", items_path %>
 
 
     

@@ -1,0 +1,19 @@
+<h2>商品一覧</h2>
+<h3>(全<%=@count %>件)</h3>
+
+<table class="table">
+<tr>
+<% @items.each do |item| %>
+
+<td>
+<%= image_tag item.get_item_image %><br>
+<%=link_to item_path(item.id) do %>
+<%=item.name %>
+<% end %><br>
+<%=item.add_tax_price %>
+</td>
+<% end %>
+</tr>
+</table>
+
+<%= paginate @items %>

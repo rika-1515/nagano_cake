@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-
   get '/admin' => 'admin/homes#top'
   namespace :admin do
     resources :genres,only:[:index,:create,:edit,:update]
@@ -21,6 +20,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resource :customers,only:[:show,:edit,:update]
     resources :deliveries,only:[:index,:create,:edit,:update,:destroy]
+    resources :items,only:[:index,:show]
   end
   
   
