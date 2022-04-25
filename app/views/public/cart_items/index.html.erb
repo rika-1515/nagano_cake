@@ -1,0 +1,39 @@
+<h5 class="font-weight-bold bg-light text-dark">ショッピングカート</h5>
+
+<table class="table table-bordered border-dack">
+    <thead class="table-light">
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody class="table-borderless">
+
+        <tr>
+          <% @cart_items.each do |cart| %>
+          <td>
+            <%= image_tag cart.get_item_image %>
+            <%=cart.name %>
+          </td>
+          <td>
+            <%=cart.add_tax_price %>
+          </td>
+          <td>
+            <%=cart.amont %>
+          </td>
+          <td>
+            <%=cart.item_subtotal %>
+          </td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+    <%= link_to "買い物を続ける",root_path,class:"btn btn-primary" %>
+  

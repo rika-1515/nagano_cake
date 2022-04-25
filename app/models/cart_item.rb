@@ -1,8 +1,10 @@
-class Item < ApplicationRecord
+class CartItem < ApplicationRecord
+    
     has_one_attached :item_image
     belongs_to :genre
+    belongs_to :customer
+    belongs_to :item
     has_many :order_details, dependent: :destroy
-    has_many :cart_items, dependent: :destroy
     
     def get_item_image
     unless item_image.attached?
@@ -16,6 +18,8 @@ class Item < ApplicationRecord
       (self.price * 1.10).round
     end
     
-
+    def item_subtotal
+      (self.add_tax_price * self.cart_item_amount).round
+    end
     
 end

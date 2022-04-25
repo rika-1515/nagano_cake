@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resource :customers,only:[:show,:edit,:update]
     resources :deliveries,only:[:index,:create,:edit,:update,:destroy]
     resources :items,only:[:index,:show]
+    resources :cart_items,only:[:index,:update,:destroy,:all_destroy,:create]
   end
   
   
