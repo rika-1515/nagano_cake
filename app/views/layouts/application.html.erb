@@ -32,6 +32,16 @@
         <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
       
+      <% if customer_signed_in? %>
+      <li>
+        <%= link_to "マイページ", customers_path %>
+      </li>
+      <li>
+        <%= link_to "商品一覧", items_path %>
+      </li>
+      <li>
+        <%= link_to "会員ログアウト", destroy_customer_session_path, method: :delete %>
+      </li>
       
       <% else %>
       <li>
@@ -39,7 +49,11 @@
       </li>
       
       <li>
-        <%= link_to "会員ログイン", new_customer_session_path %>
+        <%= link_to "About", about_path %>
+      </li>
+      
+      <li>
+        <%= link_to "商品一覧", items_path %>
       </li>
       
       <li>
@@ -47,13 +61,15 @@
       </li>
       
       <li>
-        <%= link_to "会員ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-
-      <li>
-        <%= link_to "マイページ", customers_path %>
+        <%= link_to "会員ログイン", new_customer_session_path %>
       </li>
       
+
+      
+
+
+
+      <% end %>
     <% end %>
     </nav>
     

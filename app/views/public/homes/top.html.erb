@@ -32,7 +32,9 @@
 
 <td>
 <%= image_tag item.get_item_image %><br>
-<%=item.name %><br>
+<%=link_to item_path(item.id) do %>
+<%=item.name %>
+<% end %><br>
 <%=item.add_tax_price %>
 </td>
 <% end %>
