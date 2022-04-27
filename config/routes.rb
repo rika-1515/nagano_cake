@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get '/customers/quit'=>'public/customers#quit'
   patch '/customer/out'=>'public/customers#out',as: 'out_customer'
   put '/customer/out'=>'public/customers#out'
+  delete 'cart_items'=>'public/cart_items#all_destroy' ,as: 'all_destroy'
+    
   
   scope module: :public do
     resource :customers,only:[:show,:edit,:update]

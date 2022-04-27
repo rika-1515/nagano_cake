@@ -32,7 +32,7 @@
         <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
       
-      <% if customer_signed_in? %>
+      <% else %>
       <li>
         <%= link_to "マイページ", customers_path %>
       </li>
@@ -40,10 +40,13 @@
         <%= link_to "商品一覧", items_path %>
       </li>
       <li>
+        <%= link_to "カート", cart_items_path %>
+      </li>
+      <li>
         <%= link_to "会員ログアウト", destroy_customer_session_path, method: :delete %>
       </li>
       
-      <% else %>
+      
       <li>
         <%= link_to "管理者ログイン", new_admin_session_path %>
       </li>
@@ -69,7 +72,7 @@
 
 
 
-      <% end %>
+      
     <% end %>
     </nav>
     

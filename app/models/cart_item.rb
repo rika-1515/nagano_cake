@@ -1,7 +1,6 @@
 class CartItem < ApplicationRecord
     
     has_one_attached :item_image
-    belongs_to :genre
     belongs_to :customer
     belongs_to :item
     has_many :order_details, dependent: :destroy
@@ -15,11 +14,11 @@ class CartItem < ApplicationRecord
     end
     
     def add_tax_price
-      (self.price * 1.10).round
+      (self.item.price * 1.10).round
     end
     
     def item_subtotal
-      (self.add_tax_price * self.cart_item_amount).round
+      (self.add_tax_price * self.amount).round
     end
     
 end

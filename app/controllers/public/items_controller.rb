@@ -8,7 +8,7 @@ class Public::ItemsController < ApplicationController
   def show
     @item=Item.find(params[:id])
     @cart=CartItem.new
-    @customer=current_customer
+    # @customer=current_customer
   end
   
   

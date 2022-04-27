@@ -1,4 +1,5 @@
 <h5 class="font-weight-bold bg-light text-dark">ショッピングカート</h5>
+<%=link_to "カートを空にする", all_destroy_path,method: :delete,class:"btn btn-danger" %>
 
 <table class="table table-bordered border-dack">
     <thead class="table-light">
@@ -17,18 +18,19 @@
           <% @cart_items.each do |cart| %>
           <td>
             <%= image_tag cart.get_item_image %>
-            <%=cart.name %>
+            <%=cart.item.name %>
           </td>
           <td>
             <%=cart.add_tax_price %>
           </td>
           <td>
-            <%=cart.amont %>
+            <%=cart.amount %>
           </td>
           <td>
             <%=cart.item_subtotal %>
           </td>
           <td>
+            
           </td>
         </tr>
       <% end %>
