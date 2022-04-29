@@ -25,12 +25,16 @@
           </td>
           <td>
             <%=cart.amount %>
+            <%= form_with model: @cart_items,url:"cart_items/#{cart.item_id}",method: :put do |f| %>
+              <%= f.select :amount, *[1..10] %>
+              <%= f.submit '変更',class:"btn btn-success" %>
+            <% end %>
           </td>
           <td>
             <%=cart.item_subtotal %>
           </td>
           <td>
-            
+            <%= link_to '削除する',cart_item_path(cart.id),method: :delete,class:"btn btn-danger" %>
           </td>
         </tr>
       <% end %>
@@ -38,4 +42,15 @@
   </table>
   
     <%= link_to "買い物を続ける",root_path,class:"btn btn-primary" %>
+    
+    <table>
+      <tr>
+      <td class="table-light">合計金額</td>
+      <td><%= @total.round.to_s(:delimited)%></td>
+      </tr>
+    </table>
   
+<%=link_to '情報入力に進む' ,new_order_path,class:"btn btn-success" %>
+
+
+
