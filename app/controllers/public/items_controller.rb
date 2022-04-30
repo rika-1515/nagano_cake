@@ -9,6 +9,7 @@ class Public::ItemsController < ApplicationController
     @item=Item.find(params[:id])
     @cart=CartItem.new
     # @customer=current_customer
+    @genres=Genre.all
   end
   
   

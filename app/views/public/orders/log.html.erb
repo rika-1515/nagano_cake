@@ -1,1 +1,57 @@
 <h5 class="font-weight-bold bg-light text-dark">注文情報確認</h5>
+
+  <table border="1" style="border-collapse: collapse">
+    <thead class="bg-light">
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+          <% @cart_items.each do |f| %>
+          <td>
+            <%= image_tag f.get_item_image %>
+            <%=f.item.name %>
+          </td>
+          <td>
+            <%=f.add_tax_price %>
+          </td>
+          <td>
+            <%=f.amount %>
+          </td>
+          <td>
+            <%=f.item_subtotal %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+  
+    <table border="1" style="border-collapse: collapse">
+      
+      <tr>
+      <td class="table-light">送料</td>
+      <td> <%=@order.delivery_price %> </td>
+      </tr>
+      <tr>
+      <td class="table-light">合計金額</td>
+      <td><%= @total.round.to_s(:delimited)%></td>
+      </tr>
+      
+    </table>
+    
+    <p class="font-weight-bold">支払方法</p>
+    <p><%=params[:order][:pay_method] %></p>
+    
+    
+    <p class="font-weight-bold">お届け先</p>
+    <p><%=params[:order][:postal_code] %><%=params[:order][:address] %><br>
+    <%=params[:order][:name] %></p>
+    
+    
+

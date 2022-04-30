@@ -1,8 +1,8 @@
 <h5 class="font-weight-bold bg-light text-dark">ショッピングカート</h5>
 <%=link_to "カートを空にする", all_destroy_path,method: :delete,class:"btn btn-danger" %>
 
-<table class="table table-bordered border-dack">
-    <thead class="table-light">
+<table border="1" style="border-collapse: collapse">
+    <thead class="bg-light">
       <tr>
         <th>商品名</th>
         <th>単価(税込)</th>
@@ -12,7 +12,7 @@
       </tr>
     </thead>
 
-    <tbody class="table-borderless">
+    <tbody>
 
         <tr>
           <% @cart_items.each do |cart| %>
@@ -24,9 +24,8 @@
             <%=cart.add_tax_price %>
           </td>
           <td>
-            <%=cart.amount %>
-            <%= form_with model: @cart_items,url:"cart_items/#{cart.item_id}",method: :put do |f| %>
-              <%= f.select :amount, *[1..10] %>
+            <%= form_with model: cart,url:"cart_items/#{cart.id}",method: :put do |f| %>
+              <%= f.select :amount, *[1..20] %>
               <%= f.submit '変更',class:"btn btn-success" %>
             <% end %>
           </td>
@@ -43,7 +42,7 @@
   
     <%= link_to "買い物を続ける",root_path,class:"btn btn-primary" %>
     
-    <table>
+    <table border="1" style="border-collapse: collapse">
       <tr>
       <td class="table-light">合計金額</td>
       <td><%= @total.round.to_s(:delimited)%></td>

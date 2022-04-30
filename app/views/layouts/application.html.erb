@@ -16,6 +16,14 @@
       <nav class="navbar navbar-ilght navbar-dark">
       <a class="navbar-brand" href="/">
         <span>ながのCAKE</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" 
+      data-toggle="collapse" data-target="#navbarNavDropdown" 
+      aria-controls="navbarNavDropdown" aria-expanded="false" 
+      aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
         
     <% if admin_signed_in? %>
       <li>
@@ -34,7 +42,7 @@
       
       <% elsif customer_signed_in? %>
       <li>
-        <%= link_to "マイページ", customers_path %>
+        <%= link_to "マイページ", customers_path,class:"btn btn-default" %>
       </li>
       <li>
         <%= link_to "商品一覧", items_path %>
