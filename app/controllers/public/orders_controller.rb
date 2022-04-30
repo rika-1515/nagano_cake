@@ -9,15 +9,16 @@ class Public::OrdersController < ApplicationController
     @order=Order.new(order_params) 
     @cart_items=current_customer.cart_items
     @total=@cart_items.inject(0){|sum, cart_item| sum + cart_item.item_subtotal}
-    @order.total_price=@total
     @order.delivery_price='800'
+    @order.total_price=@total + @order.delivery_price
+    
     # @order.customer_id = current_customer.id
     # byebug
     if params[:order][:select_address]=="0"
       
       @order.postal_code=current_customer.postal_code
       @order.address=current_customer.address
-      @order.name=current_customer.first_name+current_customer.last_name
+      @order.name=current_customer.last_name+current_customer.first_name
 
     elsif params[:order][:select_address] == '1'
       
@@ -37,7 +38,10 @@ class Public::OrdersController < ApplicationController
   
   def create
     @order=Order.new(order_params)
+    # byebug
     @order.save
+    @cart_items=current_customer.cart_items
+    @cart_items.destroy_all
     redirect_to orders_thanx_path
   end
 
@@ -54,7 +58,7 @@ class Public::OrdersController < ApplicationController
   private
   # ストロングパラメータ
   def order_params
-    params.require(:order).permit(:pay_method,:postal_code,:address,:name,:customer_id)
+    params.require(:order).permit(:pay_method,:postal_code,:address,:name,:customer_id,:delivery_price,:total_price)
   end
   
 end

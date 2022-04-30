@@ -20,7 +20,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def all_destroy
-    @cart_items=CartItem.all
+    @cart_items=current_customer.cart_items
     @cart_items.destroy_all
     redirect_to cart_items_path
   end
@@ -40,7 +40,7 @@ class Public::CartItemsController < ApplicationController
       if cart_item.item_id==@cart_item.item_id
         new_amount=cart_item.amount + @cart_item.amount
         cart_item.update_attribute(:amount, new_amount)
-        @cart_item.delete
+      
       end
     end
   end
