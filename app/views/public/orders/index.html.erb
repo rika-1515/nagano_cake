@@ -15,26 +15,39 @@
     <tbody>
 
         <tr>
-          <% @orders.each do |f| %>
+          <% @orders.each do |order| %>
           <td>
-            <%=f.create_at %>
+            <%=order.created_at.to_s(:datetime_jp) %>
           </td>
           <td>
-            〒<%=f.postal_code %><br>
-            <%=f.address %><br>
-            <%=f.name %>
+            〒<%=order.postal_code %><br>
+            <%=order.address %><br>
+            <%=order.name %>
           </td>
           <td>
-            <%=f.item.name %>
+            <% order.order_details.each do |o| %>
+            <%= o.item.name%><br>
+            <% end %>
+            
           </td>
           <td>
-            <%=f.total_price %>円
+            <%=order.total_price.to_s(:delimited) %>円
           </td>
           <td>
-            <%=f.status %>
+            <% if order.wait_payment? %>
+            入金待ち
+            <% elsif order.onfirm_payment? %>
+            入金確認
+            <% elsif order.onfirm_payment? %>
+            製作中
+            <% elsif order.onfirm_payment? %>
+            発送準備中
+            <% else %>
+            発送済
+            <% end %>
           </td>
           <td>
-            <%= link_to '表示する',order_path(f.id),class:"btn btn-primary" %>
+            <%= link_to '表示する',order_path(order.id),class:"btn btn-primary" %>
           </td>
         </tr>
       <% end %>

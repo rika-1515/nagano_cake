@@ -1,1 +1,90 @@
 <h5 class="font-weight-bold bg-light text-dark">注文履歴詳細</h5>
+
+<p class="font-weight-bold">注文情報</p>
+<table border="1" style="border-collapse: collapse">
+  <tr>
+      <td class="bg-light">注文日</td>
+      <td>
+        <%=@order.created_at.to_s(:datetime_jp) %>
+      </td>
+  </tr>
+  <tr>
+      <td class="bg-light">配送先</td>
+      <td>
+        〒<%= @order.postal_code %><br>
+        <%= @order.address %><br>
+        <%= @order.name %>
+      </td>
+  </tr>
+    
+  <tr>
+    <td class="bg-light">支払方法</td>  
+    <td>
+      <% if @order.credit_card? %>
+      クレジットカード
+      <% else %>
+      銀行振込
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="bg-light">ステータス</td>
+    <td>
+      <% if @order.wait_payment? %>
+      入金待ち
+      <% elsif @order.onfirm_payment? %>
+      入金確認
+      <% elsif @order.onfirm_payment? %>
+      製作中
+      <% elsif @order.onfirm_payment? %>
+      発送準備中
+      <% else %>
+      発送済
+      <% end %>
+        
+    </td>
+  </tr>
+    
+</table>
+
+<p class="font-weight-bold">請求情報</p>
+    <table border="1" style="border-collapse: collapse">
+      <tr>
+      <td class="table-light">商品合計</td>
+      <td><%=(@order.total_price - @order.delivery_price).to_s(:delimited) %></td>
+      </tr>
+      <tr>
+      <td class="table-light">配送料</td>
+      <td> <%=@order.delivery_price %> </td>
+      </tr>
+      <tr>
+      <td class="table-light">ご請求額</td>
+      <td> <%=@order.total_price.to_s(:delimited) %> </td>
+      </tr>
+      
+    </table>
+
+
+<p class="font-weight-bold">注文内容</p>
+<table border="1" style="border-collapse: collapse">
+  <thead class="bg-light">
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  <tbody>
+    <% @order.order_details.each do |o| %>
+    <tr>
+      <td><%= o.item.name %></td>
+      <td><%= o.price_tax %></td>
+      <td><%= o.item_amount %></td>
+      <td><%= (o.price_tax * o.item_amount).to_s(:delimited) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

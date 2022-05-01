@@ -29,20 +29,18 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item=CartItem.new(cart_item_params)
     # byebug
-
+    cart_item=CartItem.find_by(item_id: params[:cart_item][:item_id])
     
     @cart_items=current_customer.cart_items
-    @cart_items.each do |cart_item|
-      if cart_item.item_id==@cart_item.item_id
+   
+      if cart_item.present?
         new_amount=cart_item.amount + @cart_item.amount
         cart_item.update_attribute(:amount, new_amount)
-        @cart_item.delete
-        redirect_to cart_items_path
+        
       else
         @cart_item.save
-        redirect_to cart_items_path
       end
-    end
+  redirect_to cart_items_path
   end
   
   
