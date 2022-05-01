@@ -11,7 +11,7 @@ ja:
         
       status:
         wait_payment: '入金待ち'
-        onfirm_payment: '入金確認'
+        confirm_payment: '入金確認'
         making: '製作中'
         preparing_ship: '発送準備中'
         finish_prepare: '発送済み'
@@ -23,7 +23,10 @@ ja:
         making: '製作中'
         finish: '製作完了'
         
-        
+  time:
+    formats:
+      default: "%Y/%-m/%-d %H:%M"
+      short: "%Y/%-m/%-d"
         
         
         

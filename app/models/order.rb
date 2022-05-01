@@ -9,5 +9,22 @@ class Order < ApplicationRecord
     accepts_nested_attributes_for :order_details, allow_destroy: true
     
     
+    def total_amount
+        amount = 0
+        order_details.each do |o|
+            amount = o.item_amount + amount
+        end
+        return amount
+    end
+    
+    def subtotal_price
+        price = 0
+        order_details.each do |o|
+            price = o.item_amount * o.price_tax + price
+        end
+        return price
+    end
+    
+    
 end
 

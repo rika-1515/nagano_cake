@@ -1,47 +1,46 @@
 <h2>注文履歴詳細</h2>
 
 <table>
-    <% @order.each do |f| %>
       <tr>
         <td>購入者</td>
         <td>
-            <%=f.last_name %> <%=order.first_name %>
+            <%=@order.customer.last_name %> <%=@order.customer.first_name %>
         </td>
     　</tr>
     
     　<tr>
     　  <td>注文日</td>  
         <td>
-            <%=f.created_at %>
+            <%=@order.created_at.strftime('%Y/%-m/%-d') %>
         </td>
       </tr>
       
       <tr>
           <td>配送先</td>
           <td>
-            <%=f.postal_code %><%=f.address %>
-            <%=f.name %>
+            〒<%=@order.postal_code %><%=@order.address %><br>
+            <%=@order.name %>
           </td>
       </tr>
       
       <tr>
           <td>支払方法</td>
           <td>
-            <%=f.pay_method %>
+            <%=@order.pay_method %>
           </td>
       </tr>
       
         <tr>
           <td>注文ステータス</td>
           <td>
+            <%= form_with model:@order,url:admin_order_path,method: :patch do |f| %>
             <%= f.select :status, Order.statuses_i18n.invert %>
-            <button class="btn btn-success">
             <%=f.submit '更新',class:"btn btn-success" %>
-            </button>
+            <% end %>
           </td>
         </tr>
       
-    <% end %>
+
   </table>
   
   
@@ -59,26 +58,26 @@
     <tbody>
 
         <tr>
-          <% @order_datails.each do |d| %>
+          <% @order.order_details.each do |order_detail| %>
           <td>
-            <%=d.name %>
+            <%=order_detail.item.name %>
           </td>
           
           <td>
-            <%=d.add_tax_price.to_s(:delimited) %>
+            <%=order_detail.price_tax %>
           </td>
 
           <td>
-            <%=d.item_amount.to_s(:delimited) %>
+            <%=order_detail.item_amount %>
           </td>
           <td>
-            <%=d.item_subtotal.to_s(:delimited) %>
+            <%=order_detail.item_subtotal.to_s(:delimited) %>
           </td>
           <td>
-            <%= d.select :making_status, OrderDetails.making_statuses_i18n.invert %>
-            <button class="btn btn-success">
-            <%=d.submit '更新',class:"btn btn-success" %>
-            </button>
+            <%= form_with model:@order_detail,url:admin_order_detail_path,method: :patch do |f| %>
+            <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
+            <%= f.submit '更新',class:"btn btn-success" %>
+            <% end %>
           </td>
         </tr>
           <% end %>
