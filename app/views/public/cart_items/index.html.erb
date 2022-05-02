@@ -17,7 +17,7 @@
         <tr>
           <% @cart_items.each do |cart| %>
           <td>
-            <%= image_tag cart.get_item_image %>
+            <%= image_tag cart.get_item_image(100,200) %>
             <%=cart.item.name %>
           </td>
           <td>

@@ -4,14 +4,13 @@
 <%= render 'public/items/genres', genres: @genres %>
 </div>
 <div class="col-md-8 offset-md-1">
-    <div style="width:500px;height:300px;background-color:silver;" class="rounded pull-left">
-        <p>
+    <div class="bg-secondary d-flex align-items-center justify-content-center" style="height:300px;">
+        
             ようこそ、ながのCAKEへ！<br>
             このサイトは、ケーキ販売のECサイトになります。<br>
             会員でない方も商品の閲覧はできますが、<br>
             購入には会員登録が必要となります。
-        </p>
-
+        
     </div>
 
     <h2 class="font-weight-bold">新着商品</h2>
@@ -20,11 +19,11 @@
     <% @items.each do |item| %>
 
     <td>
-    <%= image_tag item.get_item_image %><br>
+    <%= image_tag item.get_item_image(100,200) %><br>
     <%=link_to item_path(item.id) do %>
     <%=item.name %>
     <% end %><br>
-    <%=item.add_tax_price %>
+    ¥<%=item.add_tax_price.to_s(:delimited) %>
     </td>
     <% end %>
     </tr>
