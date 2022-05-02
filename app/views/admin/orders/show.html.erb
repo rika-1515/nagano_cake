@@ -1,22 +1,23 @@
-<h2>注文履歴詳細</h2>
+<div class="container">
+  <h5><span class="bg-light text-dark">注文履歴詳細</span></h5>
 
 <table>
       <tr>
-        <td>購入者</td>
+        <td class="font-weight-bold">購入者</td>
         <td>
             <%=@order.customer.last_name %> <%=@order.customer.first_name %>
         </td>
     　</tr>
     
     　<tr>
-    　  <td>注文日</td>  
+        <td class="font-weight-bold">注文日</td>  
         <td>
             <%=@order.created_at.strftime('%Y/%-m/%-d') %>
         </td>
       </tr>
       
       <tr>
-          <td>配送先</td>
+          <td class="font-weight-bold">配送先</td>
           <td>
             〒<%=@order.postal_code %><%=@order.address %><br>
             <%=@order.name %>
@@ -24,14 +25,18 @@
       </tr>
       
       <tr>
-          <td>支払方法</td>
+          <td class="font-weight-bold">支払方法</td>
           <td>
-            <%=@order.pay_method %>
+            <% if @order.credit_card? %>
+            クレジットカード
+            <% else %>
+            銀行振込
+            <% end %>
           </td>
       </tr>
       
         <tr>
-          <td>注文ステータス</td>
+          <td class="font-weight-bold">注文ステータス</td>
           <td>
             <%= form_with model:@order,url:admin_order_path,method: :patch do |f| %>
             <%= f.select :status, Order.statuses_i18n.invert %>
@@ -43,7 +48,8 @@
 
   </table>
   
-  
+  <div class = "row">
+    <div class = "col-8">
   <table class="table">
     <thead class="table-light">
       <tr>
@@ -55,7 +61,7 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody class="table-borderless">
 
         <tr>
           <% @order.order_details.each do |order_detail| %>
@@ -74,7 +80,7 @@
             <%=order_detail.item_subtotal.to_s(:delimited) %>
           </td>
           <td>
-            <%= form_with model:@order_detail,url:admin_order_detail_path,method: :patch do |f| %>
+            <%= form_with model:order_detail,url:admin_order_detail_path,method: :patch do |f| %>
             <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
             <%= f.submit '更新',class:"btn btn-success" %>
             <% end %>
@@ -83,3 +89,24 @@
           <% end %>
     </tbody>
   </table>
+    </div>
+
+    <div class = "col-4 d-flex align-items-end">
+  <table class="table-borderless">
+    <tr>
+      <td class="font-weight-bold">商品合計</td>
+      <td align="right"><%= @order.subtotal_price.to_s(:delimited) %>円</td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">送料</td>
+      <td align="right"> <%=@order.delivery_price.to_s(:delimited) %>円 </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">請求金額合計</td>
+      <td class="font-weight-bold" align="right"> <%=@order.total_price.to_s(:delimited) %>円</td>
+    </tr>
+      
+    </table>
+      </div>
+    </div>
+  </div>

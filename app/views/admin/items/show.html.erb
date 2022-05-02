@@ -1,10 +1,11 @@
 <div class="container">  
+  <h5><span class="bg-light text-dark">商品詳細</h5>
+  
   <div class="row">
-
-
-<h5 class="font-weight-bold bg-light text-dark">商品詳細</h5>
+    <div class = "col-2">
 <%= image_tag @item.get_item_image %>
-
+    </div>
+    <div class = "col-10">
 <table>
     
       <tr>
@@ -52,9 +53,10 @@
     
   </table>
   
+  <div>
   <%=link_to "編集する", edit_admin_item_path(@item.id),class:"btn btn-success" %>
-  
-  
+  </div>
+    </div>
     </div>
   </div>
   
