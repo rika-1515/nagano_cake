@@ -28,7 +28,7 @@
             <%=item.id %>
           </td>
           <td>
-            <%=link_to admin_item_path(item.id),class:"text-reset" do %>
+            <%=link_to admin_item_path(item.id),class:"text-dark" do %>
             <%=item.name %>
             <% end %>
           </td>
@@ -54,7 +54,7 @@
   </div> 
 </div>
   
-
+<div class ="d-flex justify-content-center">
   <%= paginate @items %>
-
+</div>
   

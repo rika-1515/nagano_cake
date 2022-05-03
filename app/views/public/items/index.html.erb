@@ -8,22 +8,23 @@
 <h2>商品一覧</h2>
 <h3>(全<%=@count %>件)</h3>
 
-<table class="table">
-<tr>
+<div class = "row">
 <% @items.each do |item| %>
+<div class = "col-3">
 
-<td>
 <%= image_tag item.get_item_image(100,200) %><br>
 <%=link_to item_path(item.id) do %>
 <%=item.name %>
 <% end %><br>
 ¥<%=item.add_tax_price.to_s(:delimited) %>
-</td>
-<% end %>
-</tr>
-</table>
 
+</div>
+<% end %>
+</div>
+
+<div class ="d-flex justify-content-center">
 <%= paginate @items %>
+</div>
 
 </div>
 </div>
