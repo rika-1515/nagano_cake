@@ -1,5 +1,7 @@
-<h5 class="font-weight-bold bg-light text-dark">注文情報確認</h5>
-
+<div class="container">
+<h5><span class="bg-light text-dark">注文情報確認</span></h5>
+<div class = "row">
+<div class="col-md-9">
   <table border="1" style="border-collapse: collapse">
     <thead class="bg-light">
       <tr>
@@ -13,41 +15,44 @@
     <tbody>
         <tr>
           <% @cart_items.each do |f| %>
-          <td>
-            <%= image_tag f.get_item_image %>
+          <td class = "font-weight-bold">
+            <%= image_tag f.item.get_item_image(50,100) %>
             <%=f.item.name %>
           </td>
           <td>
-            <%=f.add_tax_price %>
+            <%=f.add_tax_price.to_s(:delimited) %>
           </td>
           <td>
-            <%=f.amount %>
+            <%=f.amount.to_s(:delimited) %>
           </td>
           <td>
-            <%=f.item_subtotal %>
+            <%=f.item_subtotal.to_s(:delimited) %>
           </td>
         </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
   
-  
+  <div class="col-md-3">
     <table border="1" style="border-collapse: collapse">
       
       <tr>
-      <td class="table-light">送料</td>
-      <td> <%=@order.delivery_price %> </td>
+      <td class="bg-light font-weight-bold">送料</td>
+      <td> <%=@order.delivery_price.to_s(:delimited) %> </td>
       </tr>
       <tr>
-      <td class="table-light">合計金額</td>
+      <td class="bg-light font-weight-bold">合計金額</td>
       <td><%= @total.round.to_s(:delimited)%></td>
       </tr>
       <tr>
-      <td class="table-light">請求金額</td>
+      <td class="bg-light font-weight-bold">請求金額</td>
       <td> <%=@order.total_price.to_s(:delimited) %> </td>
       </tr>
       
     </table>
+  </div>
+  </div>
     
     <table>
       <tr>
@@ -83,11 +88,12 @@
     <%= f.hidden_field :total_price, :value => @order.total_price %>
     <%= f.hidden_field :pay_method, :value => @order.pay_method %>
     
-    
+    <div align="center">
     <%= f.submit '注文を確定する' ,class:"btn btn-success" %>
     <% end %>
+    </div>
     
-    
+  </div>
     
     
     
