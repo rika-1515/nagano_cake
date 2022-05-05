@@ -3,6 +3,9 @@ class Public::OrdersController < ApplicationController
     @order=Order.new
     @customer=current_customer
     @deliveries=@customer.deliveries
+    
+    
+    
   end
   
   def log

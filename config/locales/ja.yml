@@ -3,6 +3,21 @@ ja:
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
+        
+    models:
+      item: 商品
+    attributes:
+      item:
+        name: 商品名
+        introduction: 商品説明
+        price: 税抜価格
+        
+      genre: ジャンル
+    attributes:
+      genre:
+        name: ジャンル名
+        
+        
   enums:
     order:
       pay_method:

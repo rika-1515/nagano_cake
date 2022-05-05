@@ -1,4 +1,5 @@
 class Admin::CustomersController < ApplicationController
+  before_action :authenticate_admin!
   
   
   def index
@@ -27,8 +28,9 @@ class Admin::CustomersController < ApplicationController
     params.require(:customer).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:email,:postal_code,:address,:telephone_number,:is_active)
   end
   
-  def authenticate_admin!
-    redirect_to root_path unless admin?
-  end
+  # def authenticate_admin!
+  #   redirect_to root_path
+  #   # redirect_to root_path unless admin?
+  # end
   
 end

@@ -1,6 +1,17 @@
 <div class="container">  
 <h5><span class="bg-light text-dark">商品新規登録</span></h5>
 
+  <% if @item.errors.any? %>
+　<div id="error_explanation">
+  <%=@item.errors.count %>個のエラーがあります
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%=message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
 <%= form_with model: @item,url:admin_items_path do |f| %>
 <table align="center">
     <tr>
