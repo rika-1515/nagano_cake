@@ -3,7 +3,7 @@ before_action :authenticate_admin!
 
   def top
     #  puts "------------test2"
-      @orders=Order.page(params[:page]).per(10)
+      @orders=Order.page(params[:page]).per(10).order(created_at: :desc)
       # # @order_amount = OrderDetail.find_by(:order_id).item_amount.sum
       # @order_amounts = 
       # (@orders.order_details.each do |o|
