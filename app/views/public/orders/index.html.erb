@@ -37,11 +37,11 @@
           <td>
             <% if order.wait_payment? %>
             入金待ち
-            <% elsif order.onfirm_payment? %>
+            <% elsif order.confirm_payment? %>
             入金確認
-            <% elsif order.onfirm_payment? %>
+            <% elsif order.making? %>
             製作中
-            <% elsif order.onfirm_payment? %>
+            <% elsif order.preparing_ship? %>
             発送準備中
             <% else %>
             発送済
