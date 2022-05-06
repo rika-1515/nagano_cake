@@ -12,61 +12,77 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-ilght navbar-dark">
-      <a class="navbar-brand" href="/">
-        <span>ながのCAKE</span>
-        
-    <% if admin_signed_in? %>
-      <li>
-        <%= link_to "商品一覧", admin_items_path,class:"btn btn-default" %>
-    
-      </li>
-      <li>
-        <%= link_to "会員一覧", admin_customers_path %>
-      </li>
-      <li>
-        <%= link_to "ジャンル一覧", admin_genres_path %>
-      </li>
-      <li>
-        <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
-      </li>
-      
-      
-      <% else %>
-      <li>
-        <%= link_to "管理者ログイン", new_admin_session_path %>
-      </li>
-      
-      <li>
-        <%= link_to "会員ログイン", new_customer_session_path %>
-      </li>
-      
-      <li>
-        <%= link_to "新規会員登録", new_customer_registration_path %>
-      </li>
-      
-      <li>
-        <%= link_to "会員ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-
-      <li>
-        <%= link_to "マイページ", customers_path %>
-      </li>
-      
-    <% end %>
-    </nav>
-    
-      <div class="input-group">
-        <%= form_with model: @item,url:admin_items_path do |f| %>
-        <%= f.search_field:item,placeholder:"Search" %><i class="fas fa-search"></i>
-        <span class="input-group-btn input-group-append">
-        <% end %>
-        </span>
-      </div>
-    
-  </header>
+    <header class="border-bottom navbar-dark bg">
+      <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container">
+          <% if admin_signed_in? %>
+            <h4><%= link_to 'NaganoCake', admin_path, class:"navbar-brand text-secondary" %></h4>
+          <% else %>
+            <h4><%= link_to 'NaganoCake', root_path, class:"navbar-brand text-secondary" %></h4>
+          <% end %>
+          <% if customer_signed_in? %>
+          　<div class="mx-auto">ようこそ、<%= current_customer.last_name %>さん！</div>
+          <% end %>
+          <div>
+          　<ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+                <li class="mx-3">
+                    <%= link_to "マイページ", customers_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                    <%= link_to "商品一覧", items_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                  <%= link_to "カート", cart_items_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class:"btn btn-outline-secondary" %>
+                </li>
+              <% elsif admin_signed_in? %>
+                <li class="mx-3">
+                  <%= link_to "商品一覧", admin_items_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                  <%= link_to "会員一覧", admin_customers_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                  <%= link_to "注文履歴一覧", admin_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                  <%= link_to "ジャンル一覧", admin_genres_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:"btn btn-outline-secondary" %>
+                </li>
+          
+              <% else %>
+                <li class="mx-3">
+                  <%= link_to "About", about_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                  <%= link_to "商品一覧", items_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                  <%= link_to "新規登録", new_customer_registration_path,class:"btn btn-outline-secondary" %>
+                </li>
+                <li class="mx-3">
+                  <%= link_to "ログイン", new_customer_session_path,class:"btn btn-outline-secondary" %>
+                </li>
+              <% end %>
+            </ul>
+              <%= form_with model: @item,url:admin_items_path do |f| %>
+                <div class="input-group col-6 offset-md-6">
+                  <%= f.search_field:item,placeholder:"Search" %>
+                    <%= button_tag :type => "submit", :class =>"btn btn-default btn-s-md" do %>
+                    <i class="fa fa-search"></i>
+                  <% end %>
+                </div>
+              <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
   
-  <%= yield %>
+    <%= yield %>
   </body>
 </html>

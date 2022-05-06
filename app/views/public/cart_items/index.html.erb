@@ -1,0 +1,63 @@
+<div class="container">
+<h5><span class="bg-light text-dark">ショッピングカート</span></h5>
+<div align="right">
+<%=link_to "カートを空にする", all_destroy_path,method: :delete,class:"btn btn-danger" %>
+</div>
+
+<table border="1" style="border-collapse: collapse" align="center">
+    <thead class="bg-light">
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+        <tr>
+          <% @cart_items.each do |cart| %>
+          <td>
+            <%= image_tag cart.item.get_item_image(50,100) %>
+            <%=cart.item.name %>
+          </td>
+          <td>
+            <%=cart.add_tax_price.to_s(:delimited) %>
+          </td>
+          <td>
+            <%= form_with model: cart,url:"cart_items/#{cart.id}",method: :put do |f| %>
+              <%= f.select :amount, *[1..20] %>
+              <%= f.submit '変更',class:"btn btn-success" %>
+            <% end %>
+          </td>
+          <td>
+            <%=cart.item_subtotal.to_s(:delimited) %>
+          </td>
+          <td>
+            <%= link_to '削除する',cart_item_path(cart.id),method: :delete,class:"btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+    <%= link_to "買い物を続ける",root_path,class:"btn btn-primary" %>
+    
+    <table border="1" style="border-collapse: collapse" align="right">
+      <tr>
+      <td class="bg-light font-weight-bold">合計金額</td>
+      <td><%= @total.round.to_s(:delimited)%></td>
+      </tr>
+    </table>
+  
+<div align="center">
+  <% if @cart_items.any? %>
+  <%=link_to '情報入力に進む' ,new_order_path,class:"btn btn-success" %>
+  <% else %>
+  <% end %>
+</div>
+
+</div>
+

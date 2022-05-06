@@ -1,7 +1,7 @@
 <div class="container">  
-  <div class="row">
 
-<<h5 class="font-weight-bold bg-light text-dark"><%=@customer.last_name %><%=@customer.first_name %>さんの会員詳細</h5>
+
+<h5><span class="bg-light text-dark"><%=@customer.last_name %><%=@customer.first_name %>さんの会員詳細</span></h5>
 
 <table>
     
@@ -58,9 +58,9 @@
           <td>退会ステータス</td>
           <td>
             <% if @customer.is_active? %>
-            <p class="text-success font-weight-bold">有効</p>
+            <span class="text-success font-weight-bold">有効</span>
             <% else %>
-            <p class="text-muted font-weight-bold">退会</p>
+            <span class="text-muted font-weight-bold">退会</span>
             <% end %>
           </td>
         </tr>
@@ -72,7 +72,7 @@
   
   
   
-  </div>
+  
 </div>
   
   

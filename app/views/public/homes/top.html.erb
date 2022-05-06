@@ -1,49 +1,40 @@
-<table class="table table-bordered">
-    <thead>
-      <tr>
-    <th>ジャンル検索</th>
-    </tr>
-    </thead>
-    
-    <tbody class="table-borderless">
-    <% @genres.each do |genre| %>
-    <tr>
-    <td><%=genre.name %></td>
-    </tr>
-    <% end %>
-    </tbody>
-</table>
-
-
-<div style="width:500px;height:300px;background-color:silver;" class="rounded mx-auto">
-<p>
-    ようこそ、ながのCAKEへ！<br>
-    このサイトは、ケーキ販売のECサイトになります。<br>
-    会員でない方も商品の閲覧はできますが、<br>
-    購入には会員登録が必要となります。
-</p>
-
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<%= render 'public/items/genres', genres: @genres %>
 </div>
+<div class="col-md-8 offset-md-1">
+    <div class="bg-secondary d-flex align-items-center justify-content-center" style="height:300px;">
+        
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要となります。
+        
+    </div>
 
-<h2 class="font-weight-bold">新着商品</h2>
-<table class="table">
-<tr>
-<% @items.each do |item| %>
+    <h2 class="font-weight-bold">新着商品</h2>
+    <table class="table">
+    <tr>
+    <% @items.each do |item| %>
 
-<td>
-<%= image_tag item.get_item_image %><br>
-<%=item.name %><br>
-<%=item.add_tax_price %>
-</td>
-<% end %>
-</tr>
-</table>
+    <td>
+    <%=link_to item_path(item.id) do %>
+    <%= image_tag item.get_item_image(100,200) %><br>
+    <%=item.name %>
+    <% end %><br>
+    ¥<%=item.add_tax_price.to_s(:delimited) %>
+    </td>
+    <% end %>
+    </tr>
+    </table>
 
-
-<%=link_to "全ての商品を見る>", items_path %>
-
-
-    
+ <div align="right">
+    <%=link_to "全ての商品を見る>", items_path %>
+</div>
+</div>
+</div>
+</div>    
 
 
 

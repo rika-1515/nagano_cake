@@ -1,30 +1,39 @@
-<h5 class="font-weight-bold bg-light text-dark">管理者ログイン</h5>
+<div class="container">  
+<h5><span class="bg-light text-dark">管理者ログイン</span></h5>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  
-  <% if devise_mapping.rememberable? %>
+  <table align="center">
+    <tr>
+      <td>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :メールアドレス %>
+      </td>
+      <td>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width:100%" %>
+      </td>
+    </tr>
     </div>
-  <% end %>
-  
-
-  <div class="actions">
-
-    <%= f.submit "ログイン",class:"btn btn-primary" %>
     
-  </div>
-<% end %>
+    <tr>
+      <td>
+    <div class="field">
+      <%= f.label :パスワード %>
+      </td>
+      <td>
+      <%= f.password_field :password, autocomplete: "current-password", style: "width:100%" %>
+      </td>
+    </tr>
+    </div>
+    <tr>
+      <td></td>
+      <div class="actions">
+        <td>
+          <%= f.submit "ログイン",class:"btn btn-primary" %>
+        </td>
+      </div>
+    </tr>
+  </table>
+<% end %>  
+<!--<%= render "admin/shared/links" %>-->
 
-<%= render "admin/shared/links" %>
+</div>

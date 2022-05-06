@@ -1,6 +1,9 @@
 class Admin::CustomersController < ApplicationController
+  before_action :authenticate_admin!
+  
+  
   def index
-    @customers=Customer.page(params[:page])
+    @customers=Customer.page(params[:page]).per(10)
   end
 
   def show
@@ -19,9 +22,15 @@ class Admin::CustomersController < ApplicationController
   end
   
   
-    private
+  private
   # ストロングパラメータ
   def customer_params
     params.require(:customer).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:email,:postal_code,:address,:telephone_number,:is_active)
   end
+  
+  # def authenticate_admin!
+  #   redirect_to root_path
+  #   # redirect_to root_path unless admin?
+  # end
+  
 end

@@ -1,7 +1,8 @@
-<<h5 class="font-weight-bold bg-light text-dark">注文履歴一覧</h5>
+<div class = "container">
+<h5><span class="bg-light text-dark">注文履歴一覧</span></h5>
 
 <table class="table">
-    <thead class="thead-lignt">
+    <thead class="table-light">
       <tr>
         <th>購入日時</th>
         <th>購入者</th>
@@ -15,18 +16,28 @@
         <tr>
             <% @orders.each do |order| %>
           <td>
-            <%=link_to admin_orders_show_path(order.id) do %>
-            <%=order.created_at %>
+            <%=link_to admin_order_path(order.id) do %>
+            <%= order.created_at.strftime('%Y/%-m/%-d %H:%M:%S') %>
             <% end %>
           </td>
           <td>
             <%=order.name %>
           </td>
           <td>
-            <%=order.item_amount %>
+            <%=order.total_amount %>
           </td>
           <td>
-            <%=order.status %>
+            <% if order.wait_payment? %>
+            入金待ち
+            <% elsif order.confirm_payment? %>
+            入金確認
+            <% elsif order.making? %>
+            製作中
+            <% elsif order.preparing_ship? %>
+            発送準備中
+            <% else %>
+            発送済
+            <% end %>
           </td>
         </tr>
       <% end %>
@@ -36,5 +47,7 @@
 
 
 
-
+<div class ="d-flex justify-content-center">
 <%= paginate @orders %>
+</div>
+</div>
