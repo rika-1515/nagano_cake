@@ -8,7 +8,6 @@ class Public::ItemsController < ApplicationController
   def show
     @item=Item.find(params[:id])
     @cart=CartItem.new
-    # @customer=current_customer
     @genres=Genre.all
   end
   

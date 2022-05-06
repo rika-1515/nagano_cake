@@ -1,8 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_items=current_customer.cart_items
-    # @cart_item=CartItem.new(cart_item_params)
-    # @cart_item=CartItem.find(params[:id])
     @total=@cart_items.inject(0){|sum, cart_item| sum + cart_item.item_subtotal}
   end
   
@@ -28,19 +26,15 @@ class Public::CartItemsController < ApplicationController
   
   def create
     @cart_item=CartItem.new(cart_item_params)
-    # byebug
     cart_item=CartItem.find_by(item_id: params[:cart_item][:item_id])
-    
     @cart_items=current_customer.cart_items
-   
       if cart_item.present?
         new_amount=cart_item.amount + @cart_item.amount
         cart_item.update_attribute(:amount, new_amount)
-        
       else
         @cart_item.save
       end
-  redirect_to cart_items_path
+    redirect_to cart_items_path
   end
   
   
