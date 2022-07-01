@@ -1,0 +1,36 @@
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<%= render 'genres', genres: @genres %>
+</div>
+
+<div class="col-md-3">
+<%= image_tag @item.get_item_image(200,300) %>
+</div>
+
+<div class="col-md-6">
+<h5 class="font-weight-bold">
+    <%=@item.name %>
+</h5>
+<div>
+    <%=@item.introduction %>
+</div>
+<div>
+    <span class="font-weight-bold">
+    ¥<%=@item.add_tax_price.to_s(:delimited) %>
+    </span>(税込)
+</div>
+
+<% if customer_signed_in? %>
+<%= form_with model: @cart,url: cart_items_path do |f| %>
+    <%= f.hidden_field :customer_id, :value => current_customer.id %>
+    <%= f.hidden_field :item_id, :value => @item.id %>
+    <%= f.select :amount, *[1..10] %>
+    <%= f.submit 'カートに入れる',class:"btn btn-success" %>
+    <% end %>
+<% else %>
+<% end %>
+
+</div>
+</div>
+</div>    
